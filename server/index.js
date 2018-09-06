@@ -26,7 +26,7 @@ massive(process.env.CONNECTION_STRING).then(database => {
 
 app.get('/api/memes', mC.getAll);
 app.get('/api/user-data', (req,res) => {
-    res.json({user: req.session.user})
+    res.json( req.session.user)
 })
 app.post('/api/logout', (req, res) => {
     req.session.destroy();
@@ -51,14 +51,12 @@ app.get('/auth/callback', (req, res) => {
     function storeUserInfoInDataBase(response) {
         const auth0Id = response.data.sub;
         const db = req.app.get('db')
-        console.log(userInfoResponse.data)
         return db.get_user_by_auth0_id(auth0Id).then(users => {
           if(users.length){
             const user = users[0];
             req.session.user = user;
             res.redirect("/dashboard");
           }else{
-            console.log(userInfoResponse.data)
             const userArray = [
               auth0Id,
               response.data.name,
@@ -85,6 +83,11 @@ app.get('/auth/callback', (req, res) => {
             console.log('error', error)
             res.status(500).send('error on server during auth')
   });
+})
+
+app.post('/api/logout', (req, res) => {
+  req.session.destroy();
+  res.send('logged out');
 })
 
 

@@ -49,7 +49,7 @@ app.get(`/auth/callback`, (req, res) => {
       if (users.length) {
         const user = users[0];
         req.session.user = user;
-        res.redirect('/dashboard');
+        res.redirect('/#/dashboard');
       } else {
         const userArray = [
           auth0Id,
@@ -59,7 +59,7 @@ app.get(`/auth/callback`, (req, res) => {
         ];
         return db.create_user(userArray).then(newUser => {
           req.session.user = newUser;
-          res.redirect('/dashboard');
+          res.redirect('/#/dashboard');
         }).catch(error => {
           console.log('error in db.create_user', error);
           res.status(500).send('Unexpected error');
@@ -82,7 +82,7 @@ app.get(`/auth/callback`, (req, res) => {
 
 app.get('/api/memes', memesController.getAll);
 app.get('/api/user-data', (req, res) => {
-  res.json({ user: req.session.user });
+  res.json(req.session.user);
 });
 app.post('/api/logout', (req, res) => {
   req.session.destroy();

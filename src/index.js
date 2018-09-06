@@ -4,20 +4,23 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 // import store from './ducks/store';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Route} from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
+import store from './redux/store'
 
 
 const render = () => {
     ReactDOM.render(
-      <AppContainer>
+      <Provider store={store}>
+        <Route>
+          <AppContainer>
             <App />
-      </AppContainer>,
+          </AppContainer>
+        </Route>
+      </Provider>,
       document.getElementById('root')
     );
   };
-
-ReactDOM.render(<App />, document.getElementById('root'));
 
 render();
 

@@ -1,5 +1,5 @@
 {
-  "name": "fullstack-wpx7",
+  "name": "full-stack-review-wpx7",
   "version": "0.1.0",
   "private": true,
   "main": "server/index.js",
@@ -27,7 +27,7 @@
     "eject": "react-scripts eject"
   },
   "proxy": {
-    "auth/callback": {
+    "/auth/callback": {
       "target": "http://localhost:4000"
     },
     "/api": {

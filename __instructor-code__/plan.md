@@ -20,7 +20,7 @@
 * add a `main` to `package.json`
   * proxy
     * remember special proxy for use with Auth0
-* middlewares?
+* ~~middlewares?~~
 * db folder
   * init.sql
 
@@ -28,7 +28,7 @@
 
 * /auth/callback
 * /logout
-* /user-data
+* /api/user-data
 * /api/memes GET (and POST if time)
 * /api/memes/:id PATCH/DELETE if time
 
